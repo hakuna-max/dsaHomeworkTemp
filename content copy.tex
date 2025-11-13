@@ -1,0 +1,110 @@
+%!TEX root = main.tex
+% !TEX encoding = UTF-8
+% content.tex
+% 请在这里撰写你所有的作业内容
+
+% --- 第一题 ---
+\section{问题一：算法分析}
+
+这里是问题一的详细描述。例如，请分析以下算法的时间复杂度。
+
+\subsection*{解：}
+
+在这里撰写你的解答。
+
+\noindent \textbf{公式的编辑：}
+
+你可以使用 \mintinline{latex}{$} $\cdots$ \mintinline{latex}{$} 来插入行内数学公式，例如 \mintinline{latex}{$O(n \log n)$}，这会生成“$O(n \log n)$”。对于独立的公式，你可以使用 \mintinline{latex}{equation} 环境：
+
+\begin{listing}[ht!]
+    \begin{minted}{latex}
+        \begin{equation}
+            \label{eq: masterTheorem} % 公式的标签，方便在正文中使用 \ref{eq: masterTheorem} 引用该公式
+            T(n) = 2T(n/2) + O(n)
+        \end{equation}
+    \end{minted}
+    \caption{\mintinline{latex}{equation} 环境示例}
+    \label{lst: equaiton-example}
+\end{listing}
+
+Listing~\ref{lst: equaiton-example} 展示了如何使用 \mintinline{latex}{equation} 环境来插入数学公式。该环境可以在文档中生成独立的数学公式，例如：
+
+\begin{equation}
+    T(n) = 2T(n/2) + O(n)
+\end{equation}
+
+\noindent \textbf{图片的插入：}
+
+你可以使用 \mintinline{latex}{figure} 环境来插入图片。例如：
+\begin{listing}[ht!]
+    \begin{minted}{latex}
+        \begin{figure}[ht!]
+            \centering % 图片居中
+            \includegraphics[width=\textwidth]{computation.pdf} % 假设所有图片放在了images文件夹下，图片文件名为 computation.pdf。width=\textwidth参数控制图片宽度为文本宽度，可以根据需要调整，比如 width=0.8\textwidth。
+            \caption{示例图片}
+            \label{fig: example-image} % 图片的标签，方便在正文中使用 \ref{fig: example-image} 引用该图片
+        \end{figure}
+    \end{minted}
+    \caption{\mintinline{latex}{figure} 环境示例}
+    \label{lst: figure-example}
+\end{listing}
+
+Listing~\ref{lst: figure-example} 展示了如何使用 \mintinline{latex}{figure} 环境来插入图片。该环境可以在文档中生成图片，例如：
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=\textwidth]{computation.pdf}
+    \caption{示例图片}
+    \label{fig: example-image}
+\end{figure}
+
+% --- 第二题 ---
+\section{问题二：代码实现}
+
+请使用 Python 实现一个链表的逆序操作。
+
+\subsection*{解：}
+
+
+以下是我的 Python 代码实现。
+
+这里使用 \mintinline{latex}{minted} 宏包来展示代码，你需要确保你的 \LaTeX 编译器开启了 \mintinline{shell}{-shell-escape} 选项（假设您使用提供的模板，并使用VSCode作为编辑器，其中的\mintinline{text}{./vscode/settings.json}已添加好相关设置）。
+
+\noindent \textbf{代码的编辑：}
+
+代码块的编辑可以使用 \mintinline{latex}{minted} 环境。如Listing~\ref{lst: minted-example} 所示：
+
+\begin{listing}[ht!]
+    \begin{lstlisting}[
+        language=TeX,
+        numbers=left, 
+        numberstyle=\tiny\color{black},
+        numbersep=1em,
+        xleftmargin=2em,
+        lineskip=0.2\baselineskip
+        ]
+\begin{minted}{python}
+    class ListNode:
+        def __init__(self, x):
+            self.val = x
+            self.next = None
+\end{minted}
+    \end{lstlisting}
+    \caption{minted 环境使用示例}
+    \label{lst: minted-example}
+\end{listing}
+
+Listing~\ref{lst: minted-example} 展示了如何使用 \mintinline{latex}{minted} 环境来插入代码。该环境可以在文档中生成高亮的代码块，如Listing~\ref{lst: minted-in-text}所示。
+
+\begin{listing}[ht!]
+    \begin{minted}{python}
+        class ListNode:
+            def __init__(self, x):
+                self.val = x
+                self.next = None
+    \end{minted}
+    \caption{\mintinline{latex}{minted}环境在文中的显示效果示例}
+    \label{lst: minted-in-text}
+\end{listing}
+
+您也可能在行内插入代码片段，可以使用 \mintinline{latex}{\mintinline{language}{code}} 命令。例如，\mintinline{latex}{\mintinline{python}{ListNode}} 会生成 \mintinline{python}{ListNode}。

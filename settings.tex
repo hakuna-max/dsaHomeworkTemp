@@ -1,0 +1,177 @@
+%!TEX root = main.tex
+% !TEX encoding = UTF-8
+% settings.tex: LaTeX 设置文件
+
+% --- Document Class ---
+% 使用 article 类，字体大小为 12pt
+\documentclass[12pt]{article}
+
+% --- Packages ---
+% 页面边距设置
+\usepackage[a4paper, margin=1in]{geometry}
+
+% 颜色支持
+\usepackage[dvipsnames, table, HTML]{xcolor}
+
+% 中文支持
+% ===== 设置字体 =====
+\usepackage{fontspec} % 加载 fontspec 包支持字体设置
+\usepackage{xeCJK} % 加载 xeCJK 包支持中文
+
+% 设置主字体（英文正文）
+\setmainfont{IBM Plex Serif}
+
+% 设置无衬线字体
+\setsansfont{IBM Plex Sans}
+
+% 设置代码字体
+\setmonofont{IBM Plex Mono}
+\setCJKmonofont{LXGW WenKai Mono} % 设置 CJK 代码字体
+
+% 设置 CJK 主字体
+\setCJKmainfont[AutoFakeBold=true]{LXGW WenKai} % 设置 CJK 主字体
+% 设置 CJK 无衬线字体
+\setCJKsansfont{IBM Plex Sans SC} % 设置 CJK 无衬线字体
+
+% \usepackage{ctex}
+
+% 标题和章节格式
+\usepackage{titlesec}
+\usepackage{zhnumber}
+\renewcommand{\thesection}{问题\zhnum{section}}
+\renewcommand{\thesubsection}{\arabic{subsection}}
+
+\titleformat{\section}
+{\normalfont\bfseries}
+{\thesection：}
+{0em}
+{}
+
+% 设置 subsection 格式（可选）
+\titleformat{\subsection}
+{\normalfont\bfseries}
+{（\thesubsection）}
+{0.5em}
+{}
+
+% 数学公式支持
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+
+% 算法伪代码支持
+\usepackage[ruled,vlined]{algorithm2e} % 如涉及算法伪代码，可启用此宏包
+
+% 插入代码块支持
+% minted 宏包提供了更美观的代码高亮，需要 Python 和 Pygments 库支持
+\usepackage{minted}
+\setminted{
+    linenos,
+    xleftmargin=2em,
+    autogobble=true,
+    numbers=left,
+    numbersep=1em,
+    baselinestretch=1.2,
+    breaklines=true,
+    breakanywhere=true,  % 允许在任何位置断行
+    framesep=2mm,  % 边框间距
+    % fontsize=\small,
+    highlightcolor=OliveGreen!10,
+    escapeinside=||,  % 可选：允许在代码中添加 LaTeX 命令
+}
+% mintinline的字体设置，使其与正文字号保持一致
+\usepackage{inputenc}
+\makeatletter
+\newcommand{\currentfontsize}{\fontsize{\f@size}{\f@baselineskip}\selectfont}
+\makeatother
+\setmintedinline{fontsize=\currentfontsize}
+
+% \usemintedstyle{tango} % 设置默认 Python 风格
+\usepackage{caption}  % 增强的标题功能
+\usepackage{listings}
+\lstset{
+    basicstyle=\ttfamily\small,
+    breaklines=true,
+    breakatwhitespace=true,
+    columns=flexible,
+}
+
+% 自定义 listing 环境的标题格式
+\captionsetup[listing]{
+    format=hang,
+    font=small,
+    labelfont=bf,
+    textfont=normalfont,
+    singlelinecheck=false,
+    margin=0pt,
+    skip=5pt
+}
+
+
+% 插入图片支持
+\usepackage{graphicx}
+\graphicspath{{images/}} % 图片可以统一放在 images 目录下
+
+% 标题和章节格式
+\usepackage{titlesec}
+\titleformat{\section}
+{\normalfont\Large\bfseries}
+{\thesection}
+{1em}
+{}
+
+% 页眉页脚设置
+\usepackage{fancyhdr}
+\setlength{\headheight}{14.5pt} % 增加页眉高度以避免警告
+\pagestyle{fancy}
+\fancyhf{} % 清空页眉页脚
+\lhead{\courseName(\semester)}
+\rhead{\studentName \quad \studentID}
+\chead{\homeworkTitle}
+\cfoot{\thepage}
+
+% 行间距设置
+\usepackage{setspace}
+\setstretch{1.5} % 行间距设置为1.5倍
+
+% --- Custom Commands ---
+\newcommand{\courseName}{数据结构与算法} % 课程名称
+\newcommand{\semester}{\small 2025-2026-1}
+\newcommand{\homeworkTitle}{作业格式模板}
+% \newcommand{\studentName}{张露平} % 请修改为你的姓名
+% \newcommand{\studentID}{20190092} % 请修改为你的学号
+% \newcommand{\profName}{指导教师：张露平}
+\newcommand{\submissionDate}{\today} % 提交日期，\today 会自动生成当天日期
+
+% --- Title ---
+% 定义作业标题格式
+\title{
+    \centering
+    \vspace{-2cm}
+    \textbf{\courseName} \\
+    \large \homeworkTitle
+}
+\author{
+    \centering
+    \studentName \quad \studentID \\
+    % \profName
+}
+\date{
+    \centering
+    \submissionDate
+}
+
+\makeatletter
+\renewcommand{\maketitle}{
+    \begin{center}
+        {\LARGE \@title \par}
+        \vspace{1em}
+        {\large \@author \par}
+        \vspace{0.5em}
+        {\large \@date \par}
+    \end{center}
+    \vspace{2em}
+}
+\makeatother
+
+% --- End of settings.tex ---
