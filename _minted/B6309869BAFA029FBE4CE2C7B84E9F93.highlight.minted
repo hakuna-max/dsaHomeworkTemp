@@ -1,3 +1,0 @@
-\begin{MintedVerbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8\relax}]
-\PYG{n}{power}\PYG{p}{(}\PYG{n}{base}\PYG{p}{,} \PYG{n}{exponent}\PYG{p}{)}
-\end{MintedVerbatim}

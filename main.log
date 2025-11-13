@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.10.5)  13 NOV 2025 11:49
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.10.5)  13 NOV 2025 13:55
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -706,12 +706,12 @@ Package caption Info: End \AtBeginDocument code.
 \pydata@fh@_FAD58DE7366495DB4650CFEFAC2FCD61.data.minted=\write4
 \openout4 = `_FAD58DE7366495DB4650CFEFAC2FCD61.data.minted'.
 
-runsystem(latexminted config  --timestamp 20251113114942 FAD58DE7366495DB4650CFEFAC2FCD61)...executed.
+runsystem(latexminted config  --timestamp 20251113135544 FAD58DE7366495DB4650CFEFAC2FCD61)...executed.
 
  (./_FAD58DE7366495DB4650CFEFAC2FCD61.config.minted)
-runsystem(latexminted cleanconfig  --timestamp 20251113114942 FAD58DE7366495DB4650CFEFAC2FCD61)...executed.
+runsystem(latexminted cleanconfig  --timestamp 20251113135544 FAD58DE7366495DB4650CFEFAC2FCD61)...executed.
 
- (./_minted/default.style.minted) (./_minted/B6309869BAFA029FBE4CE2C7B84E9F93.highlight.minted
+ (./_minted/default.style.minted) (./_minted/AB1BBD42354EE300735B39770572C16D.highlight.minted
 
 Package fontspec Info: 
 (fontspec)             Could not resolve font "LXGW WenKai Mono/I" (it
@@ -739,18 +739,20 @@ File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 LaTeX Font Info:    Trying to load font information for U+msb on input line 3.
  (c:/texlive/2025/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)) (./_minted/BC77B593DF7A2B5CAE6F0782F30F988B.highlight.minted) (./_minted/36B1A23C2B81A03AD3AF531AC0512BEA.highlight.minted) (./_minted/12EAD757741BC4D651825D7B72D5D2B2.highlight.minted) (./_minted/4A4ED18DD39C198BB077A83ED3A728F2.highlight.minted) (./_minted/6C174B0DD8B9EE344A81ACCE1156DF5B.highlight.minted) (./_minted/4A4ED18DD39C198BB077A83ED3A728F2.highlight.minted) (./_minted/3786DC9AE2A50C018FC2BDE5AC82C60B.highlight.minted
+)) (./_minted/33B0337D3EF6C88878B0F3CB62FF4A4C.highlight.minted) (./_minted/6B84DF012DF01B76C2D0CA9544006ED1.highlight.minted
 
 LaTeX Font Warning: Font shape `TU/LXGWWenKaiMono(0)/m/it' undefined
 (Font)              using `TU/LXGWWenKaiMono(0)/m/n' instead on input line 3.
 
-) (./_minted/6E6F3A579BD2E6408CFD09AD6DC41DE5.highlight.minted)
+) (./_minted/81A577FB6294AD67F028E04B29AB7E25.highlight.minted) (./_minted/62B706914A897A6733980D9DA0B571BD.highlight.minted) (./_minted/2803600271FF43847C1D1E5A3EDCB0BC.highlight.minted) (./_minted/067DB1908DBAD2567A523B38BC8FD66F.highlight.minted) (./_minted/B7303E5C6BF242334EB284EB653191B2.highlight.minted) (./_minted/517B0721550CE3F11D8967F5D7C48EB5.highlight.minted) (./_minted/E14785CF326DF6C90FE8E84CDE88EC7F.highlight.minted) (./_minted/11898E3E8AF4E6019819149BEB11F1C7.highlight.minted) (./_minted/41A3C429EBF5B6573A2F70D6F947594B.highlight.minted)
 
 [1
 
-])
+] (./_minted/E17170B732C321CFEC56628F418F8C7E.highlight.minted) (./_minted/019CA531241E488D1D6D25DE5176F495.highlight.minted) (./_minted/3357CFE4571BF6EC7EB169E80DF0F3F1.highlight.minted) (./_minted/C477856BFCE33EED64F4F9890B7D7E86.highlight.minted) (./_minted/04E1CF0FC95EB395B6515AEC18984B59.highlight.minted) (./_minted/EFB2F1A79841375C6452918FDF5B52D0.highlight.minted) (./_minted/2412F605946694092A5283F5FC948A33.highlight.minted) (./_minted/D234FBD046B57AACE4F392DBDAB680B5.highlight.minted
 
-[2] (./main.aux)
+[2]) (./_minted/4458538A9E5F5485EDEE343B764DFFE7.highlight.minted))
+
+[3] (./main.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2022/08/05>
@@ -761,12 +763,12 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
  ) 
 Here is how much of TeX's memory you used:
- 18072 strings out of 473832
- 430480 string characters out of 5733158
- 969553 words of memory out of 5000000
- 40806 multiletter control sequences out of 15000+600000
- 566331 words of font info for 138 fonts, out of 8000000 for 9000
+ 18129 strings out of 473832
+ 435183 string characters out of 5733158
+ 974599 words of memory out of 5000000
+ 40839 multiletter control sequences out of 15000+600000
+ 561654 words of font info for 116 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 90i,12n,104p,513b,1012s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 90i,12n,104p,513b,959s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on main.xdv (2 pages, 23604 bytes).
+Output written on main.xdv (3 pages, 30476 bytes).

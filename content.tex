@@ -4,56 +4,98 @@
 % 请在这里撰写你所有的作业内容
 
 % --- 第一题 ---
-\section{指数计算的递归函数实现}
+\section{递归函数实现：计算各位数字之和}
 
-请实现一个递归函数 \mintinline{python}{power(base, exponent)}，计算 $base^{exponent}$ 的值。要求支持负指数的情况。例如，\mintinline{python}{power(2, 3)} 应返回 8，而 \mintinline{python}{power(2, -3)} 应返回 0.125。
+请实现一个递归函数 \mintinline{python}{sum_of_digits(n: int) -> int}，计算一个非负整数的各位数字之和。例如，\mintinline{python}{sum_of_digits(1234)} 应返回 10。
 
 \subsection*{解：}
 
-求解思路：
-\begin{enumerate}
-    \item 定义基本情况和递归情况：当指数为 0 时，任何数的 0 次方均为 1。
-    \item 递归情况：
-          \begin{itemize}
-              \item 如果指数为正数，则递归调用 \mintinline{python}{power(base, exponent - 1)} 并将结果乘以 \mintinline{python}{base}。
-              \item 如果指数为负数，则递归调用 \mintinline{python}{power(base, exponent + 1)} 并将结果除以 \mintinline{python}{base}。
-          \end{itemize}
-\end{enumerate}
+求解思路：（请在此处描述函数设计思路）
 
-Listing~\ref{lst: power-function} 为该递归函数的实现。
+Listing~\ref{lst: sum-of-digits-function} 为该递归函数的实现。
 
 \begin{listing}[ht!]
     \begin{minted}{python}
-        def power(base, exponent):
-            # 基本情况
-            if exponent == 0:
-                return 1.0
-            # 递归情况
-            elif exponent > 0:
-                return base * power(base, exponent - 1)
-            else:  
-                return power(base, exponent + 1) / base # exponent < 0
+        def sum_of_digits(n: int) -> int:
+            # 请在此处完成函数实现
     \end{minted}
-    \caption{递归实现指数计算的\mintinline{python}{power}函数示例}
-    \label{lst: power-function}
+    \caption{递归实现计算各位数字之和的\mintinline{python}{sum_of_digits}函数示例}
+    \label{lst: sum-of-digits-function}
 \end{listing}
 
-\section{基本概念理解}
+\section{递归函数实现：判断回文字符串}
 
-在算法分析中，我们为什么通常更关注“最差情况时间复杂度”（Worst-Case Complexity）而不是“最优情况时间复杂度”（Best-Case Complexity）？请结合课程中对插入排序的分析，阐述你的理由。
+请实现一个递归函数 \mintinline{python}{is_palindrome(s: str) -> bool}，判断一个字符串是否是回文字符串（即正读和反读都一样）。例如，\mintinline{python}{is_palindrome("racecar")} 应返回 \mintinline{python}{True}，而 \mintinline{python}{is_palindrome("hello")} 应返回 \mintinline{python}{False}。
 
 \subsection*{解：}
 
-我们更关注最差情况时间复杂度，主要原因如下：
-\begin{itemize}
-    \item 提供性能保证：最差情况复杂度为算法的运行时间提供了一个上界。这意味着在任何输入情况下，算法的运行时间都不会超过这个界限，这对于评估系统的稳定性和可靠性至关重要。
-    \item 实际应用中的不可预测性：在许多应用中，我们无法预知或控制输入数据的具体状态。例如，插入排序在处理一个几乎有序的列表时非常快（最优情况），但在处理一个完全逆序的列表时则非常慢（最差情况）。依赖最优情况进行设计是有风险的。
-    \item 平均情况分析的复杂性：平均情况的分析通常比最差情况复杂得多，它需要对所有可能的输入进行概率假设和统计分析。而最差情况分析则更为直接和简洁。
-\end{itemize}
+求解思路：（请在此处描述函数设计思路）
 
-以插入排序为例：
+Listing~\ref{lst: is_palindrome} 为该递归函数的实现。
 
+\begin{listing}[ht!]
+    \begin{minted}{python}
+        def is_palindrome(s: str) -> bool:
+            # 请在此处完成函数实现
+    \end{minted}
+    \caption{递归实现判断回文字符串的\mintinline{python}{is_palindrome}函数示例}
+    \label{lst: is_palindrome}
+\end{listing}
+
+\section{递归函数实现：二分查找}
+
+请实现一个递归函数 \mintinline{python}{binary_search(arr: List[int], target: int) -> int}，在一个已排序的整数数组中查找目标值。如果找到，返回其索引；否则，返回 -1。要求使用二分查找算法。可以假设数组中没有重复元素。
+
+\subsection*{解：}
+
+求解思路：（请在此处描述函数设计思路）
+
+Listing~\ref{lst: binary_search} 为该递归函数的实现。
+
+\begin{listing}[ht!]
+    \begin{minted}{python}
+        def binary_search(arr: List[int], target: int) -> int:
+            # 请在此处完成函数实现
+    \end{minted}
+    \caption{递归实现判断回文字符串的\mintinline{python}{binary_search}函数示例}
+    \label{lst: binary_search}
+\end{listing}
+
+\section{递归函数实现:计算两个正整数的和}
+
+下面给出了两个不同的过程（procedure），它们都定义了如何计算两个正整数的和。这两个过程都构建于另外两个更基本的过程之上：
 \begin{itemize}
-    \item 最优情况：当输入数组已经是有序的时，插入排序的时间复杂度为 $O(n)$，因为每个元素只需与前一个元素比较一次。
-    \item 最差情况：当输入数组是逆序排列时，插入排序的时间复杂度为 $O(n^2)$，因为每个元素都需要与前面所有元素进行比较和移动。
+    \item \mintinline{python}{inc}：该过程会将其参数的值增加 1。\mintinline{python}{inc = lambda x: x + 1}。
+    \item \mintinline{python}{dec}：该过程会将其参数的值减少 1。\mintinline{python}{dec = lambda x: x - 1}。
 \end{itemize}
+过程定义一：
+\begin{minted}{python}
+                def add(a, b):
+                    if a == 0:
+                        return b
+                    else:
+                        return inc(add(dec(a), b))
+            \end{minted}
+过程定义二:
+\begin{minted}{python}
+                def add(a, b):
+                    if a == 0:
+                        return b
+                    else:
+                        return add(dec(a), inc(b))    
+            \end{minted}
+请分析这两个过程的计算过程，回答以下问题：
+\begin{enumerate}
+    \item 请使用替换模型（substitution model），分别推演和展示当计算 \mintinline{python}{add(4, 5)} 时，上述两个过程所生成的计算过程是怎样的。
+    \item 请判断，这两个计算过程哪一个是递归过程（Recursive Process），哪一个是迭代过程（Iterative Process）？并说明理由。
+\end{enumerate}
+
+
+\subsection*{问题1的解：}
+
+（请在此处展示推演过程）
+
+
+\subsection*{问题2的解：}
+
+
