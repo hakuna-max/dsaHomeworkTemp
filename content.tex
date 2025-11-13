@@ -3,99 +3,139 @@
 % content.tex
 % 请在这里撰写你所有的作业内容
 
-% --- 第一题 ---
-\section{递归函数实现：计算各位数字之和}
+\section{循环结构分析}
 
-请实现一个递归函数 \mintinline{python}{sum_of_digits(n: int) -> int}，计算一个非负整数的各位数字之和。例如，\mintinline{python}{sum_of_digits(1234)} 应返回 10。
+请分析以下 Python 代码片段的时间复杂度，并使用大 $O$ 表示法给出结果。请简要说明你的推导过程。
 
-\subsection*{解：}
-
-求解思路：（请在此处描述函数设计思路）
-
-Listing~\ref{lst: sum-of-digits-function} 为该递归函数的实现。
-
-\begin{listing}[ht!]
-    \begin{minted}{python}
-        def sum_of_digits(n: int) -> int:
-            # 请在此处完成函数实现
-    \end{minted}
-    \caption{递归实现计算各位数字之和的\mintinline{python}{sum_of_digits}函数示例}
-    \label{lst: sum-of-digits-function}
-\end{listing}
-
-\section{递归函数实现：判断回文字符串}
-
-请实现一个递归函数 \mintinline{python}{is_palindrome(s: str) -> bool}，判断一个字符串是否是回文字符串（即正读和反读都一样）。例如，\mintinline{python}{is_palindrome("racecar")} 应返回 \mintinline{python}{True}，而 \mintinline{python}{is_palindrome("hello")} 应返回 \mintinline{python}{False}。
-
-\subsection*{解：}
-
-求解思路：（请在此处描述函数设计思路）
-
-Listing~\ref{lst: is_palindrome} 为该递归函数的实现。
-
-\begin{listing}[ht!]
-    \begin{minted}{python}
-        def is_palindrome(s: str) -> bool:
-            # 请在此处完成函数实现
-    \end{minted}
-    \caption{递归实现判断回文字符串的\mintinline{python}{is_palindrome}函数示例}
-    \label{lst: is_palindrome}
-\end{listing}
-
-\section{递归函数实现：二分查找}
-
-请实现一个递归函数 \mintinline{python}{binary_search(arr: List[int], target: int) -> int}，在一个已排序的整数数组中查找目标值。如果找到，返回其索引；否则，返回 -1。要求使用二分查找算法。可以假设数组中没有重复元素。
-
-\subsection*{解：}
-
-求解思路：（请在此处描述函数设计思路）
-
-Listing~\ref{lst: binary_search} 为该递归函数的实现。
-
-\begin{listing}[ht!]
-    \begin{minted}{python}
-        def binary_search(arr: List[int], target: int) -> int:
-            # 请在此处完成函数实现
-    \end{minted}
-    \caption{递归实现判断回文字符串的\mintinline{python}{binary_search}函数示例}
-    \label{lst: binary_search}
-\end{listing}
-
-\section{递归函数实现:计算两个正整数的和}
-
-下面给出了两个不同的过程（procedure），它们都定义了如何计算两个正整数的和。这两个过程都构建于另外两个更基本的过程之上：
-\begin{itemize}
-    \item \mintinline{python}{inc}：该过程会将其参数的值增加 1。\mintinline{python}{inc = lambda x: x + 1}。
-    \item \mintinline{python}{dec}：该过程会将其参数的值减少 1。\mintinline{python}{dec = lambda x: x - 1}。
-\end{itemize}
-过程定义一：
 \begin{minted}{python}
-                def add(a, b):
-                    if a == 0:
-                        return b
-                    else:
-                        return inc(add(dec(a), b))
-            \end{minted}
-过程定义二:
+    def exercise_one(n):
+        total = 0
+        # 外层循环
+        for i in range(n):
+            # 内层循环
+            for j in range(n * n):
+                total += i * j
+        return total
+\end{minted}
+
+\subsection*{解：}
+
+
+\section{连续与条件结构分析 (规则 3 \& 4)}
+
+请分析以下 Python 函数的整体时间复杂度。请分别指出代码中第一部分和第二部分（\mintinline{python}{if}/\mintinline{python}{else} 结构）的复杂度，并根据规则推导出最终的整体复杂度。
+
 \begin{minted}{python}
-                def add(a, b):
-                    if a == 0:
-                        return b
-                    else:
-                        return add(dec(a), inc(b))    
-            \end{minted}
-请分析这两个过程的计算过程，回答以下问题：
-\begin{enumerate}
-    \item 请使用替换模型（substitution model），分别推演和展示当计算 \mintinline{python}{add(4, 5)} 时，上述两个过程所生成的计算过程是怎样的。
-    \item 请判断，这两个计算过程哪一个是递归过程（Recursive Process），哪一个是迭代过程（Iterative Process）？并说明理由。
-\end{enumerate}
+    def exercise_two(n):
+        # 第一部分
+        result = 0
+        for i in range(n // 2):
+            result += i
+
+        # 第二部分
+        if n > 100:
+            # if 分支
+            for i in range(n):
+                for j in range(n):
+                    result += (i + j)
+        else:
+            # else 分支
+            result += n
+        
+        return result
+\end{minted}
+
+\subsection*{解：}
 
 
-\subsection*{问题1的解：}
+\section{对数复杂度分析}
 
-（请在此处展示推演过程）
+与课程中分析的循环不同，有些循环的计数器（\mintinline{python}{counter}）并不是线性增加的。请分析以下代码片段的时间复杂度，并解释为什么它的增长趋势与普通循环不同。
+
+\begin{minted}{python}
+    def exercise_three(n):
+        i = 1
+        count = 0
+        while i < n:
+            i = i * 2  # 关键步骤
+            count += 1
+        return count
+\end{minted}
+
+\subsection*{解：}
 
 
-\subsection*{问题2的解：}
+\section{主定理直接应用 (规则 5)}
+
+一个递归算法的运行时间由以下递归关系式描述：
+\begin{equation}
+    T(n) = 8T\left(\frac{n}{2}\right) + O(n^2)
+\end{equation}
+
+请根据主定理（Master Theorem）判断该算法的时间复杂度属于哪一种情况，并写出最终的复杂度结果。
+
+\subsection*{解：}
 
 
+\section{从代码到递归关系式 (规则 5)}
+
+请分析以下递归函数 \mintinline{python}{recursive_func} 的时间复杂度。请先写出描述其运行时间的递归关系式，然后使用主定理求解。
+\begin{minted}{python}
+    def recursive_func(n):
+        if n <= 1:
+            return 1
+        
+        # 递归调用
+        result = recursive_func(n / 3) + recursive_func(n / 3) + recursive_func(n / 3)
+
+        # 非递归部分的开销
+        for i in range(n):
+            result += i
+            
+        return result
+\end{minted}
+
+\subsection*{解：}
+
+\section{算法比较}
+
+假设有两个算法 $A$ 和 $B$ 用于解决同一个问题。算法 $A$ 的时间复杂度为 $O(n^2)$，算法 $B$ 的时间复杂度为 $O(n \log n)$。当处理一个规模为 $n=1,000,000$ 的超大规模数据集时，你会选择哪个算法？为什么？这种选择体现了渐进分析的什么核心思想？
+
+\subsection*{解：}
+
+\section{综合分析}
+
+请综合运用时间复杂度分析的各项规则，分析以下 \mintinline{python}{comprehensive_analysis} 函数的整体时间复杂度，并给出详细的推导过程。
+
+\begin{minted}{python}
+    def comprehensive_analysis(n):
+        # 第一部分
+        for i in range(n):
+            for j in range(i):
+                # O(1) 操作
+                pass
+
+        # 第二部分
+        if n % 3 == 0:
+            # 递归调用
+            def recursive_part(x):
+                if x <= 1:
+                    return 1
+                return 4 * recursive_part(x / 2)
+            recursive_part(n)
+        else:
+            # 简单循环
+            for i in range(n):
+                # O(1) 操作
+                pass
+                
+        return n
+\end{minted}
+
+\subsection*{解：}
+
+\section{扩展：反向思考}
+
+请设计一个 Python 函数，使其时间复杂度恰好为 $O(n\sqrt{n})$。\textbf{提示}：可以考虑使用嵌套循环，其中内层循环的迭代次数与外层循环的变量 \mintinline{python}{i} 相关。
+
+\subsection*{解：}

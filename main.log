@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.10.5)  13 NOV 2025 13:55
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.10.5)  13 NOV 2025 14:30
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -703,15 +703,23 @@ Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
 \c@lstlisting=\count356
 (./content.tex
+LaTeX Font Info:    Trying to load font information for U+msa on input line 8.
+ (c:/texlive/2025/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 8.
+ (c:/texlive/2025/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
 \pydata@fh@_FAD58DE7366495DB4650CFEFAC2FCD61.data.minted=\write4
 \openout4 = `_FAD58DE7366495DB4650CFEFAC2FCD61.data.minted'.
 
-runsystem(latexminted config  --timestamp 20251113135544 FAD58DE7366495DB4650CFEFAC2FCD61)...executed.
+runsystem(latexminted config  --timestamp 20251113143037 FAD58DE7366495DB4650CFEFAC2FCD61)...executed.
 
  (./_FAD58DE7366495DB4650CFEFAC2FCD61.config.minted)
-runsystem(latexminted cleanconfig  --timestamp 20251113135544 FAD58DE7366495DB4650CFEFAC2FCD61)...executed.
+runsystem(latexminted cleanconfig  --timestamp 20251113143037 FAD58DE7366495DB4650CFEFAC2FCD61)...executed.
 
- (./_minted/default.style.minted) (./_minted/AB1BBD42354EE300735B39770572C16D.highlight.minted
+ (./_minted/default.style.minted) (./_minted/620D43BC6AD9CDC2CD32AB90832928D0.highlight.minted
 
 Package fontspec Info: 
 (fontspec)             Could not resolve font "LXGW WenKai Mono/I" (it
@@ -732,27 +740,27 @@ Package fontspec Info:
 (fontspec)             - 'bold italic' (b/it) with NFSS spec.: <->"LXGW WenKai
 (fontspec)             Mono/BI/OT:script=hani;language=dflt;"
 
-LaTeX Font Info:    Trying to load font information for U+msa on input line 3.
- (c:/texlive/2025/texmf-dist/tex/latex/amsfonts/umsa.fd
-File: umsa.fd 2013/01/14 v3.01 AMS symbols A
-)
-LaTeX Font Info:    Trying to load font information for U+msb on input line 3.
- (c:/texlive/2025/texmf-dist/tex/latex/amsfonts/umsb.fd
-File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)) (./_minted/33B0337D3EF6C88878B0F3CB62FF4A4C.highlight.minted) (./_minted/6B84DF012DF01B76C2D0CA9544006ED1.highlight.minted
+
 
 LaTeX Font Warning: Font shape `TU/LXGWWenKaiMono(0)/m/it' undefined
-(Font)              using `TU/LXGWWenKaiMono(0)/m/n' instead on input line 3.
+(Font)              using `TU/LXGWWenKaiMono(0)/m/n' instead on input line 4.
 
-) (./_minted/81A577FB6294AD67F028E04B29AB7E25.highlight.minted) (./_minted/62B706914A897A6733980D9DA0B571BD.highlight.minted) (./_minted/2803600271FF43847C1D1E5A3EDCB0BC.highlight.minted) (./_minted/067DB1908DBAD2567A523B38BC8FD66F.highlight.minted) (./_minted/B7303E5C6BF242334EB284EB653191B2.highlight.minted) (./_minted/517B0721550CE3F11D8967F5D7C48EB5.highlight.minted) (./_minted/E14785CF326DF6C90FE8E84CDE88EC7F.highlight.minted) (./_minted/11898E3E8AF4E6019819149BEB11F1C7.highlight.minted) (./_minted/41A3C429EBF5B6573A2F70D6F947594B.highlight.minted)
+) (./_minted/30D0CBC6095F98B8F8E9630B8286B2A4.highlight.minted) (./_minted/61AD8466E3B04F1C911546CE236D4B45.highlight.minted) (./_minted/435AC06E79291BA03F49035824D14B06.highlight.minted
 
 [1
 
-] (./_minted/E17170B732C321CFEC56628F418F8C7E.highlight.minted) (./_minted/019CA531241E488D1D6D25DE5176F495.highlight.minted) (./_minted/3357CFE4571BF6EC7EB169E80DF0F3F1.highlight.minted) (./_minted/C477856BFCE33EED64F4F9890B7D7E86.highlight.minted) (./_minted/04E1CF0FC95EB395B6515AEC18984B59.highlight.minted) (./_minted/EFB2F1A79841375C6452918FDF5B52D0.highlight.minted) (./_minted/2412F605946694092A5283F5FC948A33.highlight.minted) (./_minted/D234FBD046B57AACE4F392DBDAB680B5.highlight.minted
+]) (./_minted/EC40D5DDB6515C8DAFD0E65CC5841920.highlight.minted) (./_minted/936634590361459B86D003C23C53DAD6.highlight.minted) (./_minted/987E26A120749A58355BA3B817BA7997.highlight.minted) (./_minted/EFE56EBB2C7E74916E1BD70AD786316A.highlight.minted
 
-[2]) (./_minted/4458538A9E5F5485EDEE343B764DFFE7.highlight.minted))
+[2]) (./_minted/5355F2ED15DECC5F80FF7D72A0BD25A7.highlight.minted) (./_minted/BCBA2CC0D8FD301C3354FACF6F32D47C.highlight.minted
 
-[3] (./main.aux)
+[3]) (./_minted/3BA585B336187DDBBCE7200B9F416EFA.highlight.minted))
+
+Package caption Warning: Unused \captionsetup[listing] on input line 108.
+See the caption package documentation for explanation.
+
+
+
+[4] (./main.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2022/08/05>
@@ -763,12 +771,12 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
  ) 
 Here is how much of TeX's memory you used:
- 18129 strings out of 473832
- 435183 string characters out of 5733158
- 974599 words of memory out of 5000000
- 40839 multiletter control sequences out of 15000+600000
- 561654 words of font info for 116 fonts, out of 8000000 for 9000
+ 18057 strings out of 473832
+ 429119 string characters out of 5733158
+ 968530 words of memory out of 5000000
+ 40789 multiletter control sequences out of 15000+600000
+ 566291 words of font info for 133 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 90i,12n,104p,513b,959s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 90i,12n,101p,513b,930s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on main.xdv (3 pages, 30476 bytes).
+Output written on main.xdv (4 pages, 37180 bytes).
