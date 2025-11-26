@@ -3,139 +3,202 @@
 % content.tex
 % 请在这里撰写你所有的作业内容
 
-\section{循环结构分析}
+\section{}
 
-请分析以下 Python 代码片段的时间复杂度，并使用大 $O$ 表示法给出结果。请简要说明你的推导过程。
+请在\mintinline{python}{SimplifiedList}基础上，尝试实现 \mintinline{python}{SimplifiedList} 类的末尾删除操作 \mintinline{python}{pop()} 方法。这个方法应该从列表末尾删除一个元素，并返回被删除的元素，同时更新内部状态。你也应该仿照 \mintinline{python}{__getitem__()} 方法，添加边界检查，确保在删除时不会访问到不存在的索引（如索引小于 0 或大于等于当前长度）。如果删除成功，返回被删除的元素，否则抛出 \mintinline{python}{IndexError} 异常。
+
+\subsection*{解：}
 
 \begin{minted}{python}
-    def exercise_one(n):
-        total = 0
-        # 外层循环
-        for i in range(n):
-            # 内层循环
-            for j in range(n * n):
-                total += i * j
-        return total
+    import ctypes
+    from collections import namedtuple
+
+    # 定义“管理区”
+    # 使用 namedtuple 来表示这个管理结构，它包含三个核心元数据：
+    # n: 当前存储的元素数量 (size)
+    # capacity: 底层数组的总容量
+    # data: 指向底层数组的引用 (pointer)
+    ListInternal = namedtuple("ListInternal", ["n", "capacity", "data"])
+
+
+    class SimplifiedList:
+        """一个简化版的动态数组。"""
+
+        def __init__(self):
+            """初始化一个空的列表。"""
+            # 初始时，列表为空，大小和容量都为0。
+            # self._internal 完美地模拟了那个“列表对象头”。
+            self._internal = ListInternal(0, 0, self._make_array(0))
+
+        def __len__(self):
+            """
+            获取列表长度，复杂度 O(1)。
+            这完美地解释了为什么 len() 如此之快。
+            """
+            return self._internal.n
+
+        def __getitem__(self, k):
+            """
+            通过索引获取元素，复杂度 O(1)。
+            这是数组的随机访问特性。
+            """
+            # 边界检查
+            if not 0 <= k < self._internal.n:
+                raise IndexError("list index out of range")
+            return self._internal.data[k]
+
+        def append(self, obj):
+            """
+            在列表末尾添加元素，摊还复杂度 O(1)。
+            """
+            # 核心逻辑：如果空间不足，就进行扩容
+            if self._internal.n == self._internal.capacity:
+                self._resize(
+                    max(1, 2 * self._internal.capacity)
+                )  # 至少扩容到1，或当前容量的两倍
+
+            # 将新元素放入第一个可用的空位
+            self._internal.data[self._internal.n] = obj
+
+            # 更新 size 计数器（因为 namedtuple 不可变，我们创建一个新实例）
+            self._internal = self._internal._replace(n=self._internal.n + 1)
+
+
+        def pop(self):
+            """
+            从列表末尾删除一个元素并返回它，复杂度 O(1)。
+            """
+            # 请在此添加您的代码
+
+            # 边界检查
+
+
+        def _resize(self, new_capacity):
+            """
+            私有方法，用于扩容底层数组（这是一个 O(n) 操作）。
+            """
+            # 1. 创建一个新的、更大的底层数组
+            new_array = self._make_array(new_capacity)
+
+            # 2. 将旧数组中的所有元素复制到新数组
+            for i in range(self._internal.n):
+                new_array[i] = self._internal.data[i]
+
+            # 3. 更新内部状态，指向新的数组和容量
+            self._internal = ListInternal(self._internal.n, new_capacity, new_array)
+
+        def _make_array(self, capacity):
+            """
+            创建一个类似C语言的、固定大小的底层数组。
+            """
+            # (ctypes.py_object * capacity)() 创建一个能存放'capacity'个Python对象的数组
+            return (ctypes.py_object * capacity)()
+
+        def __repr__(self):
+            """
+            提供一个美观的打印输出，类似于真实的 list。
+            """
+            elements = [repr(self[i]) for i in range(len(self))]
+            return f"[{', '.join(elements)}]"
 \end{minted}
+
+\section{}
+
+为什么我们说数组支持“随机访问”，而链表只支持“顺序访问”？请从它们在内存中的存储方式来解释其根本原因。
+
+\subsection*{解：}
+
+\section{}
+
+简述单向链表、双向链表和循环链表各自的优缺点，并为每种结构举出一个典型的应用场景。
+
+\subsection*{解：}
+
+\section{}
+\textbf{场景分析：}你正在为一个音乐 App 设计“播放队列”功能。用户有以下几种核心需求：
+\begin{enumerate}
+    \item 随时查看当前播放歌曲在队列中的位置（即获取其索引）。
+    \item 支持“下一首”播放（即移动到下一个元素）。
+    \item 允许用户将任意一首歌“置顶”（即将任意一个元素移动到队列头部）。
+    \item 允许用户删除队列中的任意一首歌。
+\end{enumerate}
+请分别使用数组和双向链表来分析实现这四个功能的复杂度，并最终给出你的技术选型和理由。建议使用一个表格来清晰地进行对比。
+\subsection*{解：}
+
+\section{}
+给定一个单向链表的头节点 \mintinline{python}{head}，请设计一个算法，要求只遍历一次链表，就能找到链表的倒数第 $k$ 个节点。请描述你的算法思路（提示：可以使用双指针法），并分析其时间复杂度和空间复杂度。
 
 \subsection*{解：}
 
 
-\section{连续与条件结构分析 (规则 3 \& 4)}
-
-请分析以下 Python 函数的整体时间复杂度。请分别指出代码中第一部分和第二部分（\mintinline{python}{if}/\mintinline{python}{else} 结构）的复杂度，并根据规则推导出最终的整体复杂度。
+\section{}
+请实现一个双向链表的 \mintinline{python}{insert_before} 方法，用于在指定节点前插入一个新节点。要求时间复杂度为 $O(1)$。
+\subsection*{解：}
 
 \begin{minted}{python}
-    def exercise_two(n):
-        # 第一部分
-        result = 0
-        for i in range(n // 2):
-            result += i
+    class Node:
+        def __init__(self, data):
+            self.data = data
+            self.next = None
+            self.prev = None
 
-        # 第二部分
-        if n > 100:
-            # if 分支
-            for i in range(n):
-                for j in range(n):
-                    result += (i + j)
-        else:
-            # else 分支
-            result += n
-        
-        return result
+    class DoublyLinkedList:
+        def __init__(self):
+            self.head = None
+            self.tail = None
+
+        def insert_before(self, node, new_node):
+            # 请在此添加您的代码
 \end{minted}
 
+\section{}
+请实现一个双向循环链表（circular doubly linked list），其中每个节点既有 \mintinline{python}{next} 指针指向后继节点，也有 \mintinline{python}{prev} 指针指向前驱节点。要求实现基本的插入、删除和遍历操作。
 \subsection*{解：}
-
-
-\section{对数复杂度分析}
-
-与课程中分析的循环不同，有些循环的计数器（\mintinline{python}{counter}）并不是线性增加的。请分析以下代码片段的时间复杂度，并解释为什么它的增长趋势与普通循环不同。
 
 \begin{minted}{python}
-    def exercise_three(n):
-        i = 1
-        count = 0
-        while i < n:
-            i = i * 2  # 关键步骤
-            count += 1
-        return count
+    class Node:
+        def __init__(self, data):
+            self.data = data
+            self.next = None
+            self.prev = None
+
+    class CircularDoublyLinkedList:
+        # 请在此添加您的代码
 \end{minted}
 
-\subsection*{解：}
-
-
-\section{主定理直接应用 (规则 5)}
-
-一个递归算法的运行时间由以下递归关系式描述：
-\begin{equation}
-    T(n) = 8T\left(\frac{n}{2}\right) + O(n^2)
-\end{equation}
-
-请根据主定理（Master Theorem）判断该算法的时间复杂度属于哪一种情况，并写出最终的复杂度结果。
+\section{}
+请实现一个双向链表的 \mintinline{python}{reverse} 方法，用于反转链表。要求时间复杂度为 $O(n)$。例如，一个链表 A -> B -> C -> None，反转后应为 C -> B -> A -> None。
 
 \subsection*{解：}
-
-
-\section{从代码到递归关系式 (规则 5)}
-
-请分析以下递归函数 \mintinline{python}{recursive_func} 的时间复杂度。请先写出描述其运行时间的递归关系式，然后使用主定理求解。
-\begin{minted}{python}
-    def recursive_func(n):
-        if n <= 1:
-            return 1
-        
-        # 递归调用
-        result = recursive_func(n / 3) + recursive_func(n / 3) + recursive_func(n / 3)
-
-        # 非递归部分的开销
-        for i in range(n):
-            result += i
-            
-        return result
-\end{minted}
-
-\subsection*{解：}
-
-\section{算法比较}
-
-假设有两个算法 $A$ 和 $B$ 用于解决同一个问题。算法 $A$ 的时间复杂度为 $O(n^2)$，算法 $B$ 的时间复杂度为 $O(n \log n)$。当处理一个规模为 $n=1,000,000$ 的超大规模数据集时，你会选择哪个算法？为什么？这种选择体现了渐进分析的什么核心思想？
-
-\subsection*{解：}
-
-\section{综合分析}
-
-请综合运用时间复杂度分析的各项规则，分析以下 \mintinline{python}{comprehensive_analysis} 函数的整体时间复杂度，并给出详细的推导过程。
 
 \begin{minted}{python}
-    def comprehensive_analysis(n):
-        # 第一部分
-        for i in range(n):
-            for j in range(i):
-                # O(1) 操作
-                pass
+    class Node:
+        def __init__(self, data):
+            self.data = data
+            self.next = None
+            self.prev = None
 
-        # 第二部分
-        if n % 3 == 0:
-            # 递归调用
-            def recursive_part(x):
-                if x <= 1:
-                    return 1
-                return 4 * recursive_part(x / 2)
-            recursive_part(n)
-        else:
-            # 简单循环
-            for i in range(n):
-                # O(1) 操作
-                pass
-                
-        return n
+    class DoublyLinkedList:
+        def __init__(self):
+            self.head = None
+            self.tail = None
+
+        def reverse(self):
+            prev = None
+            current = self.head
+            while current:
+                # 在这里补充你的代码
+                ...
+            self.head = prev
 \end{minted}
 
-\subsection*{解：}
-
-\section{扩展：反向思考}
-
-请设计一个 Python 函数，使其时间复杂度恰好为 $O(n\sqrt{n})$。\textbf{提示}：可以考虑使用嵌套循环，其中内层循环的迭代次数与外层循环的变量 \mintinline{python}{i} 相关。
+\section{}
+给定两个已排序的单向链表 \mintinline{python}{list1} 和 \mintinline{python}{list2}，请编写一个函数 \mintinline{python}{merge_sorted_lists(list1, list2)}，将它们合并成一个新的、仍然有序的链表，并返回新链表的头节点。不允许创建新的节点，只能通过修改原有两个链表的节点指针来完成。
 
 \subsection*{解：}
+
+\begin{minted}{python}
+    def merge_sorted_lists(list1, list2):
+        # 在这里补充你的代码
+\end{minted}
+
