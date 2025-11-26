@@ -5,200 +5,96 @@
 
 \section{}
 
-请在\mintinline{python}{SimplifiedList}基础上，尝试实现 \mintinline{python}{SimplifiedList} 类的末尾删除操作 \mintinline{python}{pop()} 方法。这个方法应该从列表末尾删除一个元素，并返回被删除的元素，同时更新内部状态。你也应该仿照 \mintinline{python}{__getitem__()} 方法，添加边界检查，确保在删除时不会访问到不存在的索引（如索引小于 0 或大于等于当前长度）。如果删除成功，返回被删除的元素，否则抛出 \mintinline{python}{IndexError} 异常。
+请完成Leetcode上的“接雨水”问题（Trapping Rain Water），并在下面给出你的代码实现和简要的思路说明。
+
+\small{\url{https://leetcode.com/problems/trapping-rain-water/description/}}
 
 \subsection*{解：}
 
 \begin{minted}{python}
-    import ctypes
-    from collections import namedtuple
-
-    # 定义“管理区”
-    # 使用 namedtuple 来表示这个管理结构，它包含三个核心元数据：
-    # n: 当前存储的元素数量 (size)
-    # capacity: 底层数组的总容量
-    # data: 指向底层数组的引用 (pointer)
-    ListInternal = namedtuple("ListInternal", ["n", "capacity", "data"])
-
-
-    class SimplifiedList:
-        """一个简化版的动态数组。"""
-
-        def __init__(self):
-            """初始化一个空的列表。"""
-            # 初始时，列表为空，大小和容量都为0。
-            # self._internal 完美地模拟了那个“列表对象头”。
-            self._internal = ListInternal(0, 0, self._make_array(0))
-
-        def __len__(self):
-            """
-            获取列表长度，复杂度 O(1)。
-            这完美地解释了为什么 len() 如此之快。
-            """
-            return self._internal.n
-
-        def __getitem__(self, k):
-            """
-            通过索引获取元素，复杂度 O(1)。
-            这是数组的随机访问特性。
-            """
-            # 边界检查
-            if not 0 <= k < self._internal.n:
-                raise IndexError("list index out of range")
-            return self._internal.data[k]
-
-        def append(self, obj):
-            """
-            在列表末尾添加元素，摊还复杂度 O(1)。
-            """
-            # 核心逻辑：如果空间不足，就进行扩容
-            if self._internal.n == self._internal.capacity:
-                self._resize(
-                    max(1, 2 * self._internal.capacity)
-                )  # 至少扩容到1，或当前容量的两倍
-
-            # 将新元素放入第一个可用的空位
-            self._internal.data[self._internal.n] = obj
-
-            # 更新 size 计数器（因为 namedtuple 不可变，我们创建一个新实例）
-            self._internal = self._internal._replace(n=self._internal.n + 1)
-
-
-        def pop(self):
-            """
-            从列表末尾删除一个元素并返回它，复杂度 O(1)。
-            """
-            # 请在此添加您的代码
-
-            # 边界检查
-
-
-        def _resize(self, new_capacity):
-            """
-            私有方法，用于扩容底层数组（这是一个 O(n) 操作）。
-            """
-            # 1. 创建一个新的、更大的底层数组
-            new_array = self._make_array(new_capacity)
-
-            # 2. 将旧数组中的所有元素复制到新数组
-            for i in range(self._internal.n):
-                new_array[i] = self._internal.data[i]
-
-            # 3. 更新内部状态，指向新的数组和容量
-            self._internal = ListInternal(self._internal.n, new_capacity, new_array)
-
-        def _make_array(self, capacity):
-            """
-            创建一个类似C语言的、固定大小的底层数组。
-            """
-            # (ctypes.py_object * capacity)() 创建一个能存放'capacity'个Python对象的数组
-            return (ctypes.py_object * capacity)()
-
-        def __repr__(self):
-            """
-            提供一个美观的打印输出，类似于真实的 list。
-            """
-            elements = [repr(self[i]) for i in range(len(self))]
-            return f"[{', '.join(elements)}]"
-\end{minted}
-
-\section{}
-
-为什么我们说数组支持“随机访问”，而链表只支持“顺序访问”？请从它们在内存中的存储方式来解释其根本原因。
-
-\subsection*{解：}
-
-\section{}
-
-简述单向链表、双向链表和循环链表各自的优缺点，并为每种结构举出一个典型的应用场景。
-
-\subsection*{解：}
-
-\section{}
-\textbf{场景分析：}你正在为一个音乐 App 设计“播放队列”功能。用户有以下几种核心需求：
-\begin{enumerate}
-    \item 随时查看当前播放歌曲在队列中的位置（即获取其索引）。
-    \item 支持“下一首”播放（即移动到下一个元素）。
-    \item 允许用户将任意一首歌“置顶”（即将任意一个元素移动到队列头部）。
-    \item 允许用户删除队列中的任意一首歌。
-\end{enumerate}
-请分别使用数组和双向链表来分析实现这四个功能的复杂度，并最终给出你的技术选型和理由。建议使用一个表格来清晰地进行对比。
-\subsection*{解：}
-
-\section{}
-给定一个单向链表的头节点 \mintinline{python}{head}，请设计一个算法，要求只遍历一次链表，就能找到链表的倒数第 $k$ 个节点。请描述你的算法思路（提示：可以使用双指针法），并分析其时间复杂度和空间复杂度。
-
-\subsection*{解：}
-
-
-\section{}
-请实现一个双向链表的 \mintinline{python}{insert_before} 方法，用于在指定节点前插入一个新节点。要求时间复杂度为 $O(1)$。
-\subsection*{解：}
-
-\begin{minted}{python}
-    class Node:
-        def __init__(self, data):
-            self.data = data
-            self.next = None
-            self.prev = None
-
-    class DoublyLinkedList:
-        def __init__(self):
-            self.head = None
-            self.tail = None
-
-        def insert_before(self, node, new_node):
-            # 请在此添加您的代码
-\end{minted}
-
-\section{}
-请实现一个双向循环链表（circular doubly linked list），其中每个节点既有 \mintinline{python}{next} 指针指向后继节点，也有 \mintinline{python}{prev} 指针指向前驱节点。要求实现基本的插入、删除和遍历操作。
-\subsection*{解：}
-
-\begin{minted}{python}
-    class Node:
-        def __init__(self, data):
-            self.data = data
-            self.next = None
-            self.prev = None
-
-    class CircularDoublyLinkedList:
-        # 请在此添加您的代码
-\end{minted}
-
-\section{}
-请实现一个双向链表的 \mintinline{python}{reverse} 方法，用于反转链表。要求时间复杂度为 $O(n)$。例如，一个链表 A -> B -> C -> None，反转后应为 C -> B -> A -> None。
-
-\subsection*{解：}
-
-\begin{minted}{python}
-    class Node:
-        def __init__(self, data):
-            self.data = data
-            self.next = None
-            self.prev = None
-
-    class DoublyLinkedList:
-        def __init__(self):
-            self.head = None
-            self.tail = None
-
-        def reverse(self):
-            prev = None
-            current = self.head
-            while current:
-                # 在这里补充你的代码
-                ...
-            self.head = prev
-\end{minted}
-
-\section{}
-给定两个已排序的单向链表 \mintinline{python}{list1} 和 \mintinline{python}{list2}，请编写一个函数 \mintinline{python}{merge_sorted_lists(list1, list2)}，将它们合并成一个新的、仍然有序的链表，并返回新链表的头节点。不允许创建新的节点，只能通过修改原有两个链表的节点指针来完成。
-
-\subsection*{解：}
-
-\begin{minted}{python}
-    def merge_sorted_lists(list1, list2):
+    def trap(height):
         # 在这里补充你的代码
 \end{minted}
 
+
+\section{}
+
+请完成Leetcode上的“解码字符串”问题（Decode String），并在下面给出你的代码实现和简要的思路说明。
+
+\small{\url{https://leetcode.com/problems/decode-string/description/}}
+
+\subsection*{解：}
+
+\begin{minted}{python}
+    def decodeString(s):
+        # 在这里补充你的代码
+\end{minted}
+
+\section{用两个栈实现一个队列。}
+
+请描述如何只使用两个栈（以及基本的变量），来实现一个队列的 \mintinline{python}{enqueue} 和 \mintinline{python}{dequeue} 操作。并分析你所设计的 \mintinline{python}{enqueue} 和 \mintinline{python}{dequeue} 操作的摊还时间复杂度。
+
+\subsection*{解：}
+
+\section{用一个队列实现一个栈。}
+
+请描述如何只使用一个队列（以及基本的变量），来实现一个栈的 \mintinline{python}{push} 和 \mintinline{python}{pop} 操作。并分析你所设计的 \mintinline{python}{push} 和 \mintinline{python}{pop} 操作的时间复杂度。
+
+\subsection*{解：}
+
+\section{用两个栈实现一个队列。}
+
+请描述如何只使用两个栈（以及基本的变量），来实现一个队列的 \mintinline{python}{enqueue} 和 \mintinline{python}{dequeue} 操作。并分析你所设计的 \mintinline{python}{enqueue} 和 \mintinline{python}{dequeue} 操作的摊还时间复杂度。
+
+\subsection*{解：}
+
+\section{实现带尾指针的链表队列}
+
+请参考本章 \mintinline{python}{LinkedQueue} 的实现，为其添加一个 \mintinline{python}{rotate(k)} 方法。该方法能将队首的 \mintinline{python}{k} 个元素，依次移动到队尾，且整个操作的时间复杂度应尽可能高效。例如，一个队列 \mintinline{python}{[A, B, C, D, E]}，执行 \mintinline{python}{rotate(2)} 后，应变为 \mintinline{python}{[C, D, E, A, B]}。
+
+\subsection*{解：}
+
+\begin{minted}{python}
+    class LinkedQueue:
+        # 在这里补充你的代码
+        def rotate(self, k):
+            # 在这里补充你的代码
+\end{minted}
+
+\section{用栈检查括号匹配}
+
+编写一个函数 \mintinline{python}{is_valid_parentheses(s)}，接收一个只包含 \mintinline{python}{'(', ')', '{', '}', '[', ']'} 的字符串 \mintinline{python}{s}，判断该字符串中的括号是否有效匹配。
+\begin{itemize}
+    \item 有效字符串需满足：左括号必须用相同类型的右括号闭合；左括号必须以正确的顺序闭合。
+    \item 示例：\mintinline{python}{"()[]{}"} 是有效的，\mintinline{python}{"(]"} 和 \mintinline{python}{"([)]"} 是无效的。
+\end{itemize}
+
+\subsection*{解：}
+
+\begin{minted}{python}
+    def is_valid_parentheses(s):
+        # 在这里补充你的代码
+\end{minted}
+
+
+\section{实现循环队列（\mintinline{python}{size}计数版）}
+
+请参考本章关于循环队列的讨论，编程实现一个 \mintinline{python}{SizedCircularQueue} 类。该类使用一个固定大小的数组和一个 \mintinline{python}{size} 计数器来管理队列，其容量应被完全利用（即可存储 \mintinline{python}{capacity} 个元素）。请完整实现 \mintinline{python}{enqueue}, \mintinline{python}{dequeue}, \mintinline{python}{is_empty}, \mintinline{python}{is_full} 等核心方法。
+
+\subsection*{解：}
+
+\begin{minted}{python}
+    class SizedCircularQueue:
+        # 在这里补充你的代码
+\end{minted}
+
+
+\section{ (挑战题)用队列实现“烫手山芋”问题}
+有 $n$ 个人围成一圈，从第 1 个人开始按顺时针方向报数，报到第 $m$ 个人时，该人出局；然后从出局的下一个人开始，重新从 1 开始报数，报到第 $m$ 个人时，该人再次出局……如此循环，直到剩下最后一个人。请编写一个函数 \mintinline{python}{find_survivor(n, m)}，返回最后剩下那个人的原始编号。请使用队列来模拟这个过程。
+
+\subsection*{解：}
+
+\begin{minted}{python}
+    def find_survivor(n, m):
+        # 在这里补充你的代码
+\end{minted}
